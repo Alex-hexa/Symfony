@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+{% import "macros/projet-bar.html.twig" as ProjectBar %}
+
+{% block title %}
+	{{parent()}}
+	{{projet.title}}
+{% endblock %}
+{% block body %}
+	<h1>Mon project : {{projet.title}} </h1>
+	{{ProjectBar.ProjectBar(projet, false)}}
+{% endblock %}

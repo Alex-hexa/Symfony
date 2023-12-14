@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 {% import "macros/alert.html.twig" as alert %}
-{% import "macros/list-card.html.twig" as listCard %}
+{% import "macros/talent-bar.html.twig" as SkillBar %}
 
 {% block title %}
 	{{parent()}}
@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Mes listes</h1>
+	<h1>Mes talents</h1>
 	{% for label, messages in app.flashes %}
 		{% for msg in messages %}
 			{{alert.alert(msg, label)}}
@@ -17,13 +17,11 @@
 
 	<p>
 		Mes
-		{{lists|length}}
-		listes de tâches :
+		{{talents|length}}
+		talents
 	</p>
 
-	<div class=" d-flex justify-content-between ">
-		{% for list in lists %}
-			{{listCard.listCard(list, true)}}
-		{% endfor %}
-	</div>
+	{% for talent in talents %}
+		{{SkillBar.SkillBar(talent, true)}}
+	{% endfor %}
 {% endblock %}

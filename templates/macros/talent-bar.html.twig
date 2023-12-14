@@ -1,0 +1,25 @@
+{% macro SkillBar(talent, read) %}
+	<div class="mt-5">
+		<p>{{talent.title}}</p>
+		<div class="progress" role="progressbar" aria-valuenow="{{talent.rate}}" aria-valuemin="0" aria-valuemax="100">
+			<div class="progress-bar" style="width: {{talent.rate}}%; background-color: {{talent.color}}"></div>
+		</div>
+		<p class="text-end">{{talent.rate}}
+			%</p>
+	</div>
+	<div>
+		{% if read %}
+			<a href="/read/{{talent.id}}" class="btn btn-primary" title="Lire">
+				<i class="fa-regular fa-eye"></i>
+			</a>
+		{% endif %}
+		{% if is_granted('ROLE_ADMIN') %}
+			<a href="/update/{{talent.id}}" class="btn btn-warning" title="Modifier">
+				<i class="fa-solid fa-pen"></i>
+			</a>
+			<a href="/delete/{{talent.id}}" class="btn btn-danger" title="Supprimer">
+				<i class="fa-solid fa-trash"></i>
+			</a>
+		{% endif %}
+	</div>
+{% endmacro %}

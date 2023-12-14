@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+{% import "macros/talent-bar.html.twig" as SkillBar %}
+
+{% block title %}
+	{{parent()}}
+	{{talent.title}}
+{% endblock %}
+{% block body %}
+	<h1>Mon project : {{talent.title}} </h1>
+	{{SkillBar.SkillBar(talent, false)}}
+
+{% endblock %}

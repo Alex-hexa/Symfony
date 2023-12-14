@@ -23,7 +23,7 @@ class Redirect404ToHomepageListener
             return;
         }
         // Create redirect response with url for the home page
-        $response = new RedirectResponse($this->router->generate('read_all'));
+        $response = new RedirectResponse($this->router->generate('home'));
         // Set the response to be processed
         $event->setResponse($response);
     }
