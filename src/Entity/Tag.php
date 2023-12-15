@@ -78,6 +78,7 @@ class Tag
         }
         return $this;
     }
+    
     public function __toString(): string
     {
         // Remplacez $this->name par la propriété que vous voulez utiliser pour représenter cette entité sous forme de chaîne.

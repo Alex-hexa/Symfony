@@ -75,6 +75,9 @@
 
 	{% for projet in projets %}
 		{{ ProjectBar.ProjectBar(projet, true) }}
+		{% for tag in projet.tags %}
+			{{tag.name}}
+		{% endfor %}
 	{% endfor %}
 
 {% endblock %}

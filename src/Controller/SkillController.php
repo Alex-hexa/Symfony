@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SkillController extends AbstractController
 {
-    #[Route("/{type}/{param}/{order}", name: "home")]
+    #[Route("/read-all/{type}/{param}/{order}", name: "home")]
     public function readAll(Request $request, ManagerRegistry $doctrine, string $type = "skill", string $param = "title", string $order = "ASC"): Response
     {
         $skillRepository = $doctrine->getRepository(Skill::class);
@@ -34,7 +34,7 @@ class SkillController extends AbstractController
         return $this->render("index.html.twig", ["talents" =>  $skills, "tags" =>  $tags, "projets" =>  $projects]);
     }
 
-    #[Route("/read/skill/{id}", name: "read_skill")]
+    #[Route("/skill/{id}", name: "read_skill", requirements: ["id" => "\d+"])]
     public function read(Skill $skill): Response
     {
         if (!$skill) {
@@ -98,16 +98,38 @@ class SkillController extends AbstractController
         ]);
     }
 
-    /* #[Route("/search", name: "search")]
-    public function search(Request $request, ManagerRegistry $doctrine): Response
+    #[Route("?search={option}", name: "search")]
+    public function search(Request $request, ManagerRegistry $doctrine, string $option): Response
     {
-        $search = $request->query->get('search');
-        $tagRepository = $doctrine->getRepository(Tag::class);
-        $tags = $tagRepository->findBySearch($search);
+        $option = $request->query->get('search');
         $skillRepository = $doctrine->getRepository(Skill::class);
-        $skills = $skillRepository->findBySearch($search);
+        $skill = $skillRepository->findOneBy(['title' => $option]);
         $projectRepository = $doctrine->getRepository(Project::class);
-        $projects = $projectRepository->findBySearch($search);
-        return $this->render("index.html.twig", ["talents" =>  $skills, "tags" =>  $tags, "projets" =>  $projects]);
+        $project = $projectRepository->findOneBy(['title' => $option]);
+        /* return $this->render("index.html.twig", ["talents" =>  $skills, "tags" =>  $tags, "projets" =>  $projects]);*/
+        if ($skill) {
+            return $this->redirectToRoute("/skill/{id}", ["id" => $skill->getId()]);
+        } else {
+            return $this->redirectToRoute("/project/{id}", ["id" => $project->getId()]);
+        }
+    }
+
+    /* Search de Mattieu */
+    /* #[Route('/project/search', name: 'search-project')]
+    public function search(Request $request, ManagerRegistry $doctrine)
+    {
+        $repository = $doctrine->getRepository(Project::class);
+        $projects = $request->request->get("search");
+        $repostitory = $doctrine->getRepository(Skill::class);
+        $skills = $request->request->get("search");
+
+        if ($projects) {
+            $projectId =  $repository->findBy(["name" => $projects])[0]->getId();
+            return $this->redirectToRoute("read-project", ["id" => $projectId]);
+        } else {
+
+            $skillId =  $repository->findBy(["name" => $skills])[0]->getId();
+            return $this->redirectToRoute("read-skill", ["id" => $skillId]);
+        }
     } */
 }
