@@ -14,15 +14,23 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SkillController extends AbstractController
 {
-    #[Route("/", name: "home")]
-    public function readAll(ManagerRegistry $doctrine): Response
+    #[Route("/{type}/{param}/{order}", name: "home")]
+    public function readAll(Request $request, ManagerRegistry $doctrine, string $type = "skill", string $param = "title", string $order = "ASC"): Response
     {
-        $repo = $doctrine->getRepository(Skill::class);
-        $skills = $repo->findAll();
+        $skillRepository = $doctrine->getRepository(Skill::class);
+        $skills = $skillRepository->findAll();
         $repo = $doctrine->getRepository(Tag::class);
         $tags = $repo->findAll();
-        $repo = $doctrine->getRepository(Project::class);
-        $projects = $repo->findAll();
+        $projectRepository = $doctrine->getRepository(Project::class);
+        $projects = $projectRepository->findAll();
+
+        if ($param && $order) {
+            if ($type === "skill") {
+                $skills = $skillRepository->findBy([], [$param => $order]);
+            } else {
+                $projects = $projectRepository->findBy([], [$param => $order]);
+            }
+        }
         return $this->render("index.html.twig", ["talents" =>  $skills, "tags" =>  $tags, "projets" =>  $projects]);
     }
 
@@ -35,7 +43,7 @@ class SkillController extends AbstractController
         return $this->render("talent/readTalent.html.twig", ["talent" => $skill]);
     }
 
-    
+
     #[Route("/createTalent", name: "create_skill")]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
@@ -89,4 +97,17 @@ class SkillController extends AbstractController
             "type" => "update",
         ]);
     }
+
+    /* #[Route("/search", name: "search")]
+    public function search(Request $request, ManagerRegistry $doctrine): Response
+    {
+        $search = $request->query->get('search');
+        $tagRepository = $doctrine->getRepository(Tag::class);
+        $tags = $tagRepository->findBySearch($search);
+        $skillRepository = $doctrine->getRepository(Skill::class);
+        $skills = $skillRepository->findBySearch($search);
+        $projectRepository = $doctrine->getRepository(Project::class);
+        $projects = $projectRepository->findBySearch($search);
+        return $this->render("index.html.twig", ["talents" =>  $skills, "tags" =>  $tags, "projets" =>  $projects]);
+    } */
 }
