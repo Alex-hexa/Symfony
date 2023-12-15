@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Project;
 use App\Entity\Skill;
+use App\Entity\Tag;
 use App\Form\SkillType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,10 +19,14 @@ class SkillController extends AbstractController
     {
         $repo = $doctrine->getRepository(Skill::class);
         $skills = $repo->findAll();
-        return $this->render("talent/home.html.twig", ["talents" =>  $skills]);
+        $repo = $doctrine->getRepository(Tag::class);
+        $tags = $repo->findAll();
+        $repo = $doctrine->getRepository(Project::class);
+        $projects = $repo->findAll();
+        return $this->render("index.html.twig", ["talents" =>  $skills, "tags" =>  $tags, "projets" =>  $projects]);
     }
 
-    #[Route("/read/{id}", name: "read")]
+    #[Route("/read/skill/{id}", name: "read_skill")]
     public function read(Skill $skill): Response
     {
         if (!$skill) {
@@ -30,7 +36,7 @@ class SkillController extends AbstractController
     }
 
     
-    #[Route("/createTalent", name: "createTalent")]
+    #[Route("/createTalent", name: "create_skill")]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -52,7 +58,7 @@ class SkillController extends AbstractController
         ]);
     }
 
-    #[Route("/delete/{id}", name: "delete")]
+    #[Route("/delete/skill/{id}", name: "delete_skill")]
     public function delete(Skill $skill, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -63,7 +69,7 @@ class SkillController extends AbstractController
         return $this->redirectToRoute("home");
     }
 
-    #[Route("/update/{id}", name: "update")]
+    #[Route("/update/skill/{id}", name: "update_skill")]
     public function update(Skill $skill, Request $request, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');

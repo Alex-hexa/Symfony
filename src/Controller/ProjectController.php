@@ -12,15 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProjectController extends AbstractController
 {
-    #[Route("/", name: "home")]
-    public function readAll(ManagerRegistry $doctrine): Response
-    {
-        $repo = $doctrine->getRepository(Project::class);
-        $projects = $repo->findAll();
-        return $this->render("projet/home.html.twig", ["projets" =>  $projects]);
-    }
-
-    #[Route("/read/{id}", name: "read")]
+    #[Route("/read/project/{id}", name: "read_project")]
     public function read(Project $project): Response
     {
         if (!$project) {
@@ -30,7 +22,7 @@ class ProjectController extends AbstractController
     }
 
     
-    #[Route("/createProject", name: "createProject")]
+    #[Route("/createProject", name: "create_project")]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -51,7 +43,7 @@ class ProjectController extends AbstractController
         ]);
     }
 
-    #[Route("/delete/{id}", name: "delete")]
+    #[Route("/delete/project/{id}", name: "delete_project")]
     public function delete(Project $project, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -62,7 +54,7 @@ class ProjectController extends AbstractController
         return $this->redirectToRoute("home");
     }
 
-    #[Route("/update/{id}", name: "update")]
+    #[Route("/update/project/{id}", name: "update_project")]
     public function update(Project $project, Request $request, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');

@@ -1,23 +1,29 @@
 {% macro ProjectBar(projet, read) %}
-	<div class="mt-5">
-		<p>{{talent.title}}</p>
-		<div class="progress" role="progressbar" aria-valuenow="{{talent.rate}}" aria-valuemin="0" aria-valuemax="100">
-			<div class="progress-bar" style="width: {{talent.rate}}%; background-color: {{talent.color}}"></div>
+	<div class="card mt-3 p-2" style="max-width: 540px;">
+		<div class="row g-0" style="background-color: {{projet.color}};">
+			<div class="col-md-4">
+				<img src={{projet.image}} class="img-fluid rounded-start" alt="...">
+			</div>
+			<div class="col-md-8">
+				<div class="card-body">
+					<h5 class="card-title">{{projet.title}}</h5>
+					<p class="card-text">{{projet.description}}</p>
+				</div>
+			</div>
 		</div>
-		<p class="text-end">{{talent.rate}}
-			%</p>
 	</div>
+	
 	<div>
 		{% if read %}
-			<a href="/read/{{projet.id}}" class="btn btn-primary" title="Lire">
-				<i class="fa-regular fa-eye"></i>
+			<a href="/read/project/{{projet.id}}" class="btn btn-primary" title="Lire">
+				<i class="fa-regular fa-eye"></i> {# icone à l'intérieur du bouton #}
 			</a>
 		{% endif %}
 		{% if is_granted('ROLE_ADMIN') %}
-			<a href="/update/{{projet.id}}" class="btn btn-warning" title="Modifier">
+			<a href="/update/project/{{projet.id}}" class="btn btn-warning" title="Modifier">
 				<i class="fa-solid fa-pen"></i>
 			</a>
-			<a href="/delete/{{projet.id}}" class="btn btn-danger" title="Supprimer">
+			<a href="/delete/project/{{projet.id}}" class="btn btn-danger" title="Supprimer">
 				<i class="fa-solid fa-trash"></i>
 			</a>
 		{% endif %}

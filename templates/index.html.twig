@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+{% import "macros/alert.html.twig" as alert %}
+{% import "macros/talent-bar.html.twig" as SkillBar %}
+{% import "macros/projet-bar.html.twig" as ProjectBar %}
+
+{% block title %}
+    {{ parent() }}
+    Accueil
+{% endblock %}
+
+{% block body %}
+
+    {# <div class="text-end">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Trier par
+        </button>
+        <ul class="dropdown-menu">
+            <li>
+                <a id="sort-talent" class="dropdown-item" href="{{ path('sort_talent') }}">Talent</a>
+            </li>
+            <li>
+                <a id="sort-projet" class="dropdown-item" href="{{ path('sort_projet') }}">Projet</a>
+            </li>
+        </ul>
+    </div> #}
+
+    <br>
+
+    <h1 class="mt-5">Mes talents</h1>
+    {% for label, messages in app.flashes %}
+        {% for msg in messages %}
+            {{ alert.alert(msg, label) }}
+        {% endfor %}
+    {% endfor %}
+
+    {% for talent in talents %}
+        {{ SkillBar.SkillBar(talent, true) }}
+    {% endfor %}
+
+    <br>
+
+    <h1>Mes Projets</h1>
+    {% for label, messages in app.flashes %}
+        {% for msg in messages %}
+            {{ alert.alert(msg, label) }}
+        {% endfor %}
+    {% endfor %}
+
+    {% for projet in projets %}
+        {{ ProjectBar.ProjectBar(projet, true) }}
+    {% endfor %}
+
+    {% endblock %}

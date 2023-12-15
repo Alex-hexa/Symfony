@@ -12,15 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TagController extends AbstractController
 {
-    #[Route("/", name: "home")]
-    public function readAll(ManagerRegistry $doctrine): Response
-    {
-        $repo = $doctrine->getRepository(Tag::class);
-        $tags = $repo->findAll();
-        return $this->render("tag/home.html.twig", ["tags" =>  $tags]);
-    }
-
-    #[Route("/read/{id}", name: "read")]
+    #[Route("/read/{id}", name: "read_tag")]
     public function read(tag $tag): Response
     {
         if (!$tag) {
@@ -30,7 +22,7 @@ class TagController extends AbstractController
     }
 
     
-    #[Route("/createTalent", name: "createTalent")]
+    #[Route("/createTag", name: "create_tag")]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -51,7 +43,7 @@ class TagController extends AbstractController
         ]);
     }
 
-    #[Route("/delete/{id}", name: "delete")]
+    #[Route("/delete/tag/{id}", name: "delete_tag")]
     public function delete(Tag $tag, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -62,7 +54,7 @@ class TagController extends AbstractController
         return $this->redirectToRoute("home");
     }
 
-    #[Route("/update/{id}", name: "update")]
+    #[Route("/update/tag/{id}", name: "update_tag")]
     public function update(Tag $tag, Request $request, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');

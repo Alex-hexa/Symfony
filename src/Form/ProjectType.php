@@ -22,7 +22,24 @@ class ProjectType extends AbstractType
                 "attr" => [
                     "placeholder" => "Titre du projet",
                 ]
-            ]);
+            ])
+            ->add('description', TextType::class, [
+                'label' => 'Description',
+                "attr" => [
+                    "placeholder" => "Description du projet",
+                ]
+            ])
+            ->add('image', TextType::class, [
+                'label' => 'image',
+                "attr" => [
+                    "placeholder" => "Image du projet",
+                ]
+            ])
+            ->add('color', ColorType::class, [
+                "label" => "Couleur",
+                "required" => false
+            ])
+            ->add('tags');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

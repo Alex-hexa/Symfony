@@ -16,6 +16,7 @@ class UserController extends AbstractController
     #[Route('/user/create', name: 'user_create')]
     public function create(Request $request, UserPasswordHasherInterface $passwordHasher, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $user = new User($passwordHasher);
         $form = $this->createForm(UserType::class, $user);
 
