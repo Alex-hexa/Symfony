@@ -11,20 +11,22 @@
 {% endblock %}
 
 {% block body %}
-	<h1>
+	<div class="mt-5">
+		<h1 class="m-5 pt-5 d-flex justify-content-center">
+			{% if type == "create" %}
+				Créer un talent
+			{% else %}
+				Modifier le talent
+				{{ skill.title }}
+			{% endif %}
+		</h1>
+		{{form_start(form)}}
+		{{form_rest(form)}}
 		{% if type == "create" %}
-			Créer un talent
+			<input type="submit" value="Créer" class="btn btn-success">
 		{% else %}
-			Modifier le talent
-			{{ skill.title }}
+			<input type="submit" value="Modifier" class="btn btn-warning">
 		{% endif %}
-	</h1>
-	{{form_start(form)}}
-	{{form_rest(form)}}
-	{% if type == "create" %}
-		<input type="submit" value="Créer" class="btn btn-success">
-	{% else %}
-		<input type="submit" value="Modifier" class="btn btn-warning">
-	{% endif %}
-	{{form_end(form)}}
+		{{form_end(form)}}
+	</div>
 {% endblock %}

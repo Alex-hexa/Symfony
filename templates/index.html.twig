@@ -15,12 +15,12 @@
 
 	<p class="my-5 py-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, magnam. Rem est atque, saepe eveniet similique provident labore excepturi, quis, eius perferendis alias. Distinctio accusantium sequi eos, asperiores impedit enim.</p>
 
-	<h1 class="mt-2" id="Talent">Mes talents</h1>
 	{% for label, messages in app.flashes %}
 		{% for msg in messages %}
 			{{ alert.alert(msg, label) }}
 		{% endfor %}
 	{% endfor %}
+	<h1 class="mt-2" id="Talent">Mes talents</h1>
 
 	<div class="text-end my-3">
 		<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

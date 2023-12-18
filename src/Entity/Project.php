@@ -27,7 +27,8 @@ class Project
 
     #[Assert\NotBlank(message: "La couleur ne peut pas être vide.")]
     #[ORM\Column(type: "string", length: 7, nullable: true)]
-    private string $color = "red";
+    private string $colorBackCard = "#FFFFFF";
+
 
     #[ORM\ManyToMany(mappedBy: "projects", targetEntity: Tag::class)]
     private $tags;
@@ -128,20 +129,22 @@ class Project
     }
 
     /**
-     * Get the value of color
+     * Get the value of color_backcard
      */
-    public function getColor(): string
+    public function getColorBackCard(): string
     {
-        return $this->color;
+        return $this->colorBackCard;
     }
 
     /**
-     * Set the value of color
+     * Set the value of color_backcard
      */
-    public function setColor(string $color): self
+    public function setColorBackCard(string $colorBackCard): self
     {
-        $this->color = $color;
+        $this->colorBackCard = $colorBackCard;
 
         return $this;
     }
+
+   
 }

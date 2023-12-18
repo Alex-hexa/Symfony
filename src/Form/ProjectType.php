@@ -30,16 +30,20 @@ class ProjectType extends AbstractType
                 ]
             ])
             ->add('image', TextType::class, [
-                'label' => 'image',
+                'label' => 'Image',
                 "attr" => [
                     "placeholder" => "Image du projet",
                 ]
             ])
-            ->add('color', ColorType::class, [
-                "label" => "Couleur",
+            ->add('colorBackCard', ColorType::class, [
+                "label" => "Couleur de fond de la carte du projet",
                 "required" => false
             ])
-            ->add('tags');
+
+            ->add('tags', null, [
+                "label" => "Tags",
+                "required" => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

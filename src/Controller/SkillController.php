@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SkillController extends AbstractController
 {
     #[Route("/read-all/{type}/{param}/{order}", name: "home")]
-    public function readAll(ManagerRegistry $doctrine, string $type = "skill", string $param = "title", string $order = "ASC"): Response
+    public function readAll(Request $request, ManagerRegistry $doctrine, string $type = "skill", string $param = "title", string $order = "ASC"): Response
     {
         $skillRepository = $doctrine->getRepository(Skill::class);
         $skills = $skillRepository->findAll();
@@ -24,6 +24,7 @@ class SkillController extends AbstractController
         $projectRepository = $doctrine->getRepository(Project::class);
         $projects = $projectRepository->findAll();
 
+        
         if ($param && $order) {
             if ($type === "skill") {
                 $skills = $skillRepository->findBy([], [$param => $order]);
@@ -31,6 +32,14 @@ class SkillController extends AbstractController
                 $projects = $projectRepository->findBy([], [$param => $order]);
             }
         }
+        
+        $search = $request->query->get('search');
+        if ($search) {
+            $skills = $skillRepository->findBy(['title' => $search], [$param => $order]);
+            $projects = $projectRepository->findBy(['title' => $search], [$param => $order]);
+        } else{
+        }
+        
         return $this->render("index.html.twig", ["talents" =>  $skills, "tags" =>  $tags, "projets" =>  $projects]);
     }
 
@@ -53,7 +62,6 @@ class SkillController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            //dump($skill);
             $em = $doctrine->getManager();
             $em->persist($skill);
             $em->flush();
@@ -98,7 +106,7 @@ class SkillController extends AbstractController
         ]);
     }
 
-    #[Route("?search={option}", name: "search")]
+    /* #[Route("?search={option}", name: "search")]
     public function search(Request $request, ManagerRegistry $doctrine, string $option): Response
     {
         $option = $request->query->get('search');
@@ -107,12 +115,12 @@ class SkillController extends AbstractController
         $projectRepository = $doctrine->getRepository(Project::class);
         $project = $projectRepository->findOneBy(['title' => $option]);
         /* return $this->render("index.html.twig", ["talents" =>  $skills, "tags" =>  $tags, "projets" =>  $projects]);*/
-        if ($skill) {
+        /* if ($skill) {
             return $this->redirectToRoute("/skill/{id}", ["id" => $skill->getId()]);
         } else {
             return $this->redirectToRoute("/project/{id}", ["id" => $project->getId()]);
         }
-    }
+    } */
 
     /* Search de Mattieu */
     /* #[Route('/project/search', name: 'search-project')]
