@@ -2,6 +2,15 @@
 
 namespace App\Controller;
 
+/*
+use App\Entity\Tag;
+use App\Repository\ProjectRepository;
+use App\Repository\TagRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+*/
+
 use App\Entity\Project;
 use App\Form\ProjectType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -12,6 +21,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProjectController extends AbstractController
 {
+    /*  
+    private $em;
+    private $projectRepository;
+    public function __construct(EntityManagerInterface $em, ProjectRepository $projectRepository, TagRepository $tagRepository)
+    {
+        $this->em = $em;
+        $this->projectRepository = $projectRepository;
+        $this->tagRepository = $tagRepository;
+    }
+    */
+    
     #[Route("/read/project/{id}", name: "read_project")]
     public function read(Project $project): Response
     {

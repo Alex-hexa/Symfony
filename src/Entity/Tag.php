@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
+use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: TagRepository::class)]
 class Tag
 {
     #[ORM\Id]
@@ -60,20 +61,19 @@ class Tag
         return $this;
     }
 
-    public function addProject(Project $project): static
+    public function addProject(Project $project): self
     {
         if (!$this->projects->contains($project)) {
-            $this->projects->add($project);
+            $this->projects[]=$project;
             $project->addTag($this);
         }
 
         return $this;
     }
 
-    public function removeProject(Project $project): static
+    public function removeProject(Project $project): self
     {
         if ($this->projects->removeElement($project)) {
-            // set the owning side to null (unless already changed)
             $project->removeTag($this);
         }
         return $this;

@@ -41,6 +41,9 @@ section {
   color: #00c2cb;
   transition: 0.1s;
 }
+body{
+  background-color: red;
+}
 @media screen and(max-width:600px) {
   .container {
     display: flex;

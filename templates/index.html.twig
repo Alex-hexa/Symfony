@@ -10,32 +10,34 @@
 
 {% block body %}
 
+	{# <div class="mt-2"></div> #}
+	<h1 class="d-flex justify-content-center mt-5 pt-5">Titre</h1>
 
-	<br>
+	<p class="my-5 py-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, magnam. Rem est atque, saepe eveniet similique provident labore excepturi, quis, eius perferendis alias. Distinctio accusantium sequi eos, asperiores impedit enim.</p>
 
-	<h1 class="mt-5">Mes talents</h1>
+	<h1 class="mt-2" id="Talent">Mes talents</h1>
 	{% for label, messages in app.flashes %}
 		{% for msg in messages %}
 			{{ alert.alert(msg, label) }}
 		{% endfor %}
 	{% endfor %}
 
-	<div class="text-end">
+	<div class="text-end my-3">
 		<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 			Trier par
 		</button>
 		<ul class="dropdown-menu">
 			<li>
-				<a id="titleAsc" class="dropdown-item" href="/skill/title/ASC">Titre (du plus récent au plus ancien)</a>
+				<a id="titleAsc" class="dropdown-item" href="/read-all/skill/title/ASC">Titre (du plus récent au plus ancien)</a>
 			</li>
 			<li>
-				<a id="titleDesc" class="dropdown-item" href="/skill/title/DESC">Titre (du plus ancien au plus récent)</a>
+				<a id="titleDesc" class="dropdown-item" href="/read-all/skill/title/DESC">Titre (du plus ancien au plus récent)</a>
 			</li>
 			<li>
-				<a id="rateAsc" class="dropdown-item" href="/skill/rate/ASC">Taux (du plus bas au plus élevé)</a>
+				<a id="rateAsc" class="dropdown-item" href="/read-all/skill/rate/ASC">Taux (du plus bas au plus élevé)</a>
 			</li>
 			<li>
-				<a id="rateDesc" class="dropdown-item" href="/skill/rate/DESC">Taux (du plus élevé au plus bas)</a>
+				<a id="rateDesc" class="dropdown-item" href="/read-all/skill/rate/DESC">Taux (du plus élevé au plus bas)</a>
 			</li>
 		</ul>
 	</div>
@@ -46,29 +48,29 @@
 
 	<br>
 
-	<h1>Mes Projets</h1>
+	<h1 class="mt-5" id="Projet">Mes Projets</h1>
 	{% for label, messages in app.flashes %}
 		{% for msg in messages %}
 			{{ alert.alert(msg, label) }}
 		{% endfor %}
 	{% endfor %}
 
-	<div class="text-end">
+	<div class="text-end my-3">
 		<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 			Trier par
 		</button>
 		<ul class="dropdown-menu">
 			<li>
-				<a id="titleAsc" class="dropdown-item" href="/project/title/ASC">Titre (du plus récent au plus ancien)</a>
+				<a id="titleAsc" class="dropdown-item" href="/read-all/project/title/ASC">Titre (du plus récent au plus ancien)</a>
 			</li>
 			<li>
-				<a id="titleDesc" class="dropdown-item" href="/project/title/DESC">Titre (du plus ancien au plus récent)</a>
+				<a id="titleDesc" class="dropdown-item" href="/read-all/project/title/DESC">Titre (du plus ancien au plus récent)</a>
 			</li>
 			<li>
-				<a id="dateAsc" class="dropdown-item" href="/project/id/ASC">Date (du plus récent au plus ancien)</a>
+				<a id="dateAsc" class="dropdown-item" href="/read-all/project/id/ASC">Date (du plus récent au plus ancien)</a>
 			</li>
 			<li>
-				<a id="dateDesc" class="dropdown-item" href="/project/id/DESC">Date (du plus ancien au plus récent)</a>
+				<a id="dateDesc" class="dropdown-item" href="/read-all/project/id/DESC">Date (du plus ancien au plus récent)</a>
 			</li>
 		</ul>
 	</div>

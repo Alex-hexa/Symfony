@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SkillController extends AbstractController
 {
     #[Route("/read-all/{type}/{param}/{order}", name: "home")]
-    public function readAll(Request $request, ManagerRegistry $doctrine, string $type = "skill", string $param = "title", string $order = "ASC"): Response
+    public function readAll(ManagerRegistry $doctrine, string $type = "skill", string $param = "title", string $order = "ASC"): Response
     {
         $skillRepository = $doctrine->getRepository(Skill::class);
         $skills = $skillRepository->findAll();
@@ -34,7 +34,7 @@ class SkillController extends AbstractController
         return $this->render("index.html.twig", ["talents" =>  $skills, "tags" =>  $tags, "projets" =>  $projects]);
     }
 
-    #[Route("/skill/{id}", name: "read_skill", requirements: ["id" => "\d+"])]
+    #[Route("/read/skill/{id}", name: "read_skill", requirements: ["id" => "\d+"])]
     public function read(Skill $skill): Response
     {
         if (!$skill) {

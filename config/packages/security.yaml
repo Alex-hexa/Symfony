@@ -19,9 +19,10 @@ security:
             form_login:
                 login_path: admin
                 check_path: admin
+                default_target_path: /read-all/
             logout:
                 path: logout
-                target: /
+                target: /read-all/
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

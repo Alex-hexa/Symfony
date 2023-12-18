@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-
+use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: ProjectRepository::class)]
 class Project
 {
     #[ORM\Id]
@@ -26,7 +26,7 @@ class Project
     private ?string $image = null;
 
     #[Assert\NotBlank(message: "La couleur ne peut pas être vide.")]
-    #[ORM\Column(type:"string", length: 7, nullable: true)]
+    #[ORM\Column(type: "string", length: 7, nullable: true)]
     private string $color = "red";
 
     #[ORM\ManyToMany(mappedBy: "projects", targetEntity: Tag::class)]
@@ -46,14 +46,14 @@ class Project
     {
         return $this->title;
     }
-    
+
     public function setTitle(string $title): static
     {
         $this->title = $title;
-        
+
         return $this;
     }
-    
+
 
     /**
      * Set the value of tags
@@ -64,7 +64,7 @@ class Project
 
         return $this;
     }
-     /**
+    /**
      * @return Collection<int, Todo>
      */
     public function getTags(): Collection
@@ -72,17 +72,16 @@ class Project
         return $this->tags;
     }
 
-    public function addTag(Tag $tag): static
+    public function addTag(Tag $tag): self
     {
         if (!$this->tags->contains($tag)) {
-            $this->tags->add($tag);
-            $tag->addProject($this);
+            $this->tags[] = $tag;
         }
 
         return $this;
     }
 
-    public function removeTag(Tag $tag): static
+    public function removeTag(Tag $tag): self
     {
         if ($this->tags->removeElement($tag)) {
             $tag->removeProject($this);

@@ -8,7 +8,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController // SecurityController.php
 {
-    #[Route("/admin", name: "admin")]
+    #[Route("/read-all/admin", name: "admin")]
     public function admin(AuthenticationUtils $Utils)
     {
         $error = $Utils->getLastAuthenticationError();
