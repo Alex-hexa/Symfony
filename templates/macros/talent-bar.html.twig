@@ -10,15 +10,15 @@
 	<div>
 		{% if read %}
 			<a href="/read/skill/{{talent.id}}" class="btn btn-primary" title="Lire">
-				<img src="./oeil (32).png" alt="">
+				<i class="fa-regular fa-eye"></i>
 			</a>
 		{% endif %}
 		{% if is_granted('ROLE_ADMIN') %}
 			<a href="/update/skill/{{talent.id}}" class="btn btn-warning" title="Modifier">
-				<img src="./edit (32).png" alt="">
+				<i class="fa-solid fa-pen"></i>
 			</a>
 			<a href="/delete/skill/{{talent.id}}" class="btn btn-danger" title="Supprimer">
-				<img src="./trash (32).png" alt="">
+				<i class="fa-solid fa-trash"></i>
 			</a>
 		{% endif %}
 	</div>
