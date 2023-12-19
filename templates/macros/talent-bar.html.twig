@@ -6,14 +6,15 @@
 		</div>
 		<p class="text-end">{{talent.rate}}
 			%</p>
+		
 	</div>
 	<div>
+		{% if is_granted('ROLE_ADMIN') %}
 		{% if read %}
 			<a href="/read/skill/{{talent.id}}" class="btn btn-primary" title="Lire">
 				<i class="fa-regular fa-eye"></i>
 			</a>
 		{% endif %}
-		{% if is_granted('ROLE_ADMIN') %}
 			<a href="/update/skill/{{talent.id}}" class="btn btn-warning" title="Modifier">
 				<i class="fa-solid fa-pen"></i>
 			</a>

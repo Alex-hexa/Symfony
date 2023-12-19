@@ -8,9 +8,12 @@
 				<div class="card-body" style="background-color:  #FFFFFF">
 					<h3 class="card-title">{{projet.title}}</h3>
 					<p class="card-text">{{projet.description}}
-					{% for tag in projet %}
-						{{tag.title}}
-					{% endfor %}
+					{# 
+					<br>
+					{% for tags in projet.tags %}
+						{{tag}}
+					{% endfor %} 
+					#}
 					</p>
 					
 				</div>
