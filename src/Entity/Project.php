@@ -30,7 +30,8 @@ class Project
     private string $colorBackCard = "#FFFFFF";
 
 
-    #[ORM\ManyToMany(mappedBy: "projects", targetEntity: Tag::class)]
+    #[ORM\ManyToMany(mappedBy: Tag::class, targetEntity: "projects")]
+ 
     private $tags;
 
     public function __construct()
