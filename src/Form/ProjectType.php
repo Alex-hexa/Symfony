@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Project;
+use App\Entity\Tag;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -40,9 +42,11 @@ class ProjectType extends AbstractType
                 "required" => false
             ])
 
-            ->add('tags', null, [
-                "label" => "Tags",
-                "required" => false
+            ->add("tags", EntityType::class, [
+                'class' => Tag::class,
+                'choice_label' => 'title',
+                'expanded' => true,
+                'multiple' => true,
             ]);
     }
 

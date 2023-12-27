@@ -19,7 +19,7 @@ class Tag
     #[ORM\Column(length: 70)]
     private ?string $title = null; // "HTML", "CSS", "Symfony", "Gestion de projet"
 
-    #[ORM\ManyToMany(inversedBy: Project::class, targetEntity: "tags")]
+    #[ORM\ManyToMany(inversedBy: "tags", targetEntity: Project::class)]
     private $projects;
 
     public function __construct()
@@ -44,7 +44,7 @@ class Tag
         return $this;
     }
     /**
-     * @return Collection<int, Todo>
+     * @return Collection<int, Test>
      */
     public function getProjects(): Collection
     {

@@ -7,13 +7,37 @@
 	{{ parent() }}
 	Accueil
 {% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
 
+{% block javascripts %}
+	{{ parent() }}
+{% endblock %}
 {% block body %}
 
 	{# <div class="mt-2"></div> #}
-	<h1 class="d-flex justify-content-center mt-5 pt-5">Titre</h1>
+	<h1 class="d-flex justify-content-center mt-5 pt-5">Portfolio</h1>
 
-	<p class="my-5 py-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, magnam. Rem est atque, saepe eveniet similique provident labore excepturi, quis, eius perferendis alias. Distinctio accusantium sequi eos, asperiores impedit enim.</p>
+	<p class="my-5 py-5">
+		Salut, je m'appelle Alexandre, j'ai 20 ans et je suis en deuxième année à l'école Hexagone. 
+		Pour résumé ma vie, je jongle entre les cours, l'envoie de mail à Chris et les micro-siestes stratégiques. 
+		Ma passion ? Le web, bien sûr ! 
+		<br>
+		Si je pouvais obtenir un diplôme en 'scrolling intensif' et en 'maîtrise de l'art du meme', 
+		je serais déjà doctorant ! Pendant que d'autres collectionnent des timbres, moi je collectionne 
+		des onglets de navigateur. Et oui, je suis ce genre de personne qui pense que Ctrl+C et Ctrl+V méritent des éloges. 
+		Je suis aussi secrétaire du BDE d'Hexagone. C'est un peu comme être président, mais en moins bien, 
+		avec moins de responsabilités et plus de mails à envoyer. C'est moi qui vous harcele sur Wimi. 
+		J'espère que vous appréciez !
+		<br>
+		En bref, je suis un étudiant qui aime le web, les memes et les easters eggs.
+		Au total, il y en a 4 sur ce site. Saurez-vous les trouver ?
+		<br>
+		Dans ce portfolio, vous trouverez mes talents et mes projets. Vous pouvez les trier par ordre alphabétique ou par date,
+		et vous pouvez aussi laisser votre candidature pour rejoindre mon équipe de developpement 
+		(oui, je recrute tout le monde dans ma start-up, même toi Maxime <3).
+	</p>
 
 	{% for label, messages in app.flashes %}
 		{% for msg in messages %}
@@ -75,9 +99,10 @@
 
 	{% for projet in projets %}
 		{{ ProjectBar.ProjectBar(projet, true) }}
-		{% for tag in projet.tags %}
-			{{tag.name}}
-		{% endfor %}
+		{# {% for tag in projet.tags %}
+							{{tag.title}}
+						{% endfor %} #}
 	{% endfor %}
 
 {% endblock %}
+

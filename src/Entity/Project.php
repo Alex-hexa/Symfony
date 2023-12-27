@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+/* use Proxies\__CG__\App\Entity\Tag; */
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 class Project
@@ -29,9 +30,7 @@ class Project
     #[ORM\Column(type: "string", length: 7, nullable: true)]
     private string $colorBackCard = "#FFFFFF";
 
-
-    #[ORM\ManyToMany(mappedBy: Tag::class, targetEntity: "projects")]
- 
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: "projects")]
     private $tags;
 
     public function __construct()
@@ -67,7 +66,7 @@ class Project
         return $this;
     }
     /**
-     * @return Collection<int, Todo>
+     * @return Collection<int, Test>
      */
     public function getTags(): Collection
     {
