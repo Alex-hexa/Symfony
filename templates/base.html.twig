@@ -21,6 +21,12 @@ body {
 .color-nav {
 	background-color: #f6f6f6;
 }
+.text-justify {
+	text-align: justify;
+}
+.bg-dark {
+	background-color: black !important;
+}
 		</style>
 	{% endblock %}
 
@@ -66,15 +72,15 @@ body {
 							</li>
 						{% endif %}
 					</ul>
-					{% if app.request.pathinfo == "/read-all" %}
-					<form class="d-flex" role="search" method="get">
-						<input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success" type="submit">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewbox="0 0 16 16">
-								<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-							</svg>
-						</button>
-					</form>
+					{% if app.request.pathinfo == "/read-all" or  app.request.pathinfo == "/read-all/project/title/ASC" or app.request.pathinfo == "/read-all/project/title/DESC" or app.request.pathinfo == "/read-all/project/id/ASC" or app.request.pathinfo == "/read-all/project/id/DESC" or app.request.pathinfo == "/read-all/skill/title/ASC" or app.request.pathinfo == "/read-all/skill/title/DESC" or app.request.pathinfo == "/read-all/skill/id/ASC" or app.request.pathinfo == "/read-all/skill/id/DESC"%}
+						<form class="d-flex" role="search" method="get">
+							<input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-success" type="submit">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewbox="0 0 16 16">
+									<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+								</svg>
+							</button>
+						</form>
 					{% endif %}
 				</div>
 			</div>
@@ -82,15 +88,18 @@ body {
 
 		<main class="container mt-5"> {% block body %}{% endblock %}
 			</main>
+			{% block footer %}
+				<footer class="bg-dark">
+					<div class="row">
+						<div class="col"></div>
+						<div class="col-4 text-end py-5 pe-5">
+							<p class="text-light">©2024 - Portfolio</p>
+						</div>
+					</div>
+				</footer>
+			{% endblock %}
 			{% block javascripts %}
 				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 			{% endblock %}
 		</body>
-		{% block footer %}
-			<footer class="">
-				<div>
-					<p class="text-center text-light">© 2024 - Portfolio</p>
-				</div>
-			</footer>
-		{% endblock %}
 	</html>
