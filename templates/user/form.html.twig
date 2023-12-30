@@ -1,16 +1,15 @@
 {% extends "base.html.twig" %}
 
-{% block title %}
-	{{parent()}}
-	Créer un compte
-{% endblock %}
-
 {% block body %}
-	<h1>Créer un compte</h1>
-	{{form_start(form)}}
-	{{form_rest(form)}}
+	<div class="my-5"></div>
+	<h1 class="text-center pt-5">Créer un compte</h1>
+	<br>
+	<div class="d-flex justify-content-center">
+		{{form_start(form)}}
+		{{form_rest(form)}}
 
-	<input type="submit" value="Créer" class="btn btn-success">
+		<input type="submit" value="Créer" class="btn btn-success">
 
-	{{form_end(form)}}
+		{{form_end(form)}}
+	</div>
 {% endblock %}
