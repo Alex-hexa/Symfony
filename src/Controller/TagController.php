@@ -1,4 +1,4 @@
-<?php
+<?php /* Controller pour les "tags" */
 
 namespace App\Controller;
 
@@ -10,9 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TagController extends AbstractController
+class TagController extends AbstractController /* CRUD */
 {
-    #[Route("/read/{id}", name: "read_tag")]
+    #[Route("/read/{id}", name: "read_tag")] /* Consulter */
     public function read(tag $tag): Response
     {
         if (!$tag) {
@@ -22,7 +22,7 @@ class TagController extends AbstractController
     }
 
     
-    #[Route("/createTag", name: "create_tag")]
+    #[Route("/createTag", name: "create_tag")] /* Créer */
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -43,7 +43,7 @@ class TagController extends AbstractController
         ]);
     }
 
-    #[Route("/delete/tag/{id}", name: "delete_tag")]
+    #[Route("/delete/tag/{id}", name: "delete_tag")] /* Supprimer */
     public function delete(Tag $tag, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -54,7 +54,7 @@ class TagController extends AbstractController
         return $this->redirectToRoute("home");
     }
 
-    #[Route("/update/tag/{id}", name: "update_tag")]
+    #[Route("/update/tag/{id}", name: "update_tag")] /* Modifier */
     public function update(Tag $tag, Request $request, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');

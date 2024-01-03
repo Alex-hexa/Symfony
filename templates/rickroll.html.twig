@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %} {# Page easteregg du rickroll #}
+
+{% block body %}
+	<div class="my-5"></div>
+	<div class="d-flex justify-content-center">
+		<video class="w-100" src="{{ asset('video/EasterEgg.mp4') }}" autoplay controls></video>
+		<!-- lance la vidéo de l'EasterEgg -->
+	</div>
+{% endblock %}

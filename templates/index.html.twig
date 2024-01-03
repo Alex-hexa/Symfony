@@ -1,8 +1,9 @@
 {% extends "base.html.twig" %}
+{# Page d'acceuil #}
 {% import "macros/alert.html.twig" as alert %}
 {% import "macros/talent-bar.html.twig" as SkillBar %}
 {% import "macros/projet-bar.html.twig" as ProjectBar %}
-
+{# Appel de toutes les macros #}
 {% block title %}
 	{{ parent() }}
 	Accueil
@@ -11,41 +12,37 @@
 	{{ parent() }}
 {% endblock %}
 
-{% block javascripts %}
-	{{ parent() }}
-{% endblock %}
 {% block body %}
-
-	{# <div class="mt-2"></div> #}
 	<h1 class="d-flex justify-content-center mt-5 pt-5">Portfolio</h1>
 
 	{% for label, messages in app.flashes %}
+		{# Message flash #}
 		{% for msg in messages %}
 			{{ alert.alert(msg, label) }}
 		{% endfor %}
 	{% endfor %}
-	
-	<p class="my-5 py-5 text-justify text-center">
+
+	<p class="my-5 py-5 text-justify text-center">{# Texte de présentation #}
 		Il était une fois, dans une galaxie lointaine, très lointaine...<br>
 		Non, je rigole.
 		<br>
 		Moi, c'est Alexandre, j'ai 20 ans et je suis en deuxième année à l'école Hexagone. 
-						Pour résumé ma vie, je jongle entre les cours, l'envoie de mail à Chris et les micro-siestes stratégiques. 
-						Ma passion ? Le web, bien sûr !
+										Pour résumé ma vie, je jongle entre les cours, l'envoie de mail à Chris et les micro-siestes stratégiques. 
+										Ma passion ? Le web, bien sûr !
 		<br>
 		Si je pouvais obtenir un diplôme en 'scrolling intensif' et en 'maîtrise de l'art du meme', 
-						je serais déjà doctorant ! Pendant que d'autres collectionnent des timbres, moi je collectionne 
-						des onglets de navigateur. Et oui, je suis ce genre de personne qui pense que Ctrl+C et Ctrl+V méritent des éloges. 
-						Je suis aussi secrétaire du BDE d'Hexagone. C'est un peu comme être président, mais en moins bien, 
-						avec moins de responsabilités et plus de mails à envoyer. C'est moi qui vous harcele sur Wimi. 
-						J'espère que vous appréciez !
+										je serais déjà doctorant ! Pendant que d'autres collectionnent des timbres, moi je collectionne 
+										des onglets de navigateur. Et oui, je suis ce genre de personne qui pense que Ctrl+C et Ctrl+V méritent des éloges. 
+										Je suis aussi secrétaire du BDE d'Hexagone. C'est un peu comme être président, mais en moins bien, 
+										avec moins de responsabilités et plus de mails à envoyer. C'est moi qui vous harcele sur Wimi. 
+										J'espère que vous appréciez !
 		<br>
 		En bref, je suis un étudiant qui aime le web, les memes et les easters eggs.
-						Au total, il y en a 4 sur ce site. Saurez-vous les trouver ?
+										Au total, il y en a 6 sur ce site. Saurez-vous les trouver ?
 		<br>
 		Dans ce portfolio, vous trouverez mes talents et mes projets. Vous pouvez les trier par ordre alphabétique ou par date,
-						et vous pouvez aussi laisser votre candidature pour rejoindre mon équipe de developpement 
-						(oui, je recrute tout le monde dans ma start-up, même toi Maxime <3).
+										et vous pouvez aussi laisser votre candidature pour rejoindre mon équipe de developpement 
+										(oui, je recrute tout le monde dans ma start-up, même toi Maxime <3).
 	</p>
 	<div class="d-flex justify-content-center my-3 pb-5">
 		<img class="w-25" src="{{ asset('vinyles.png') }}" alt="Vinyles">
@@ -53,7 +50,7 @@
 
 	<h1 class="mt-2" id="Talent">Mes talents</h1>
 
-	<div class="text-end my-3">
+	<div class="text-end my-3"> {# Tri des talents #}
 		<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 			Trier par
 		</button>
@@ -73,18 +70,12 @@
 		</ul>
 	</div>
 
-	{% for talent in talents %}
+	{% for talent in talents %} {# Affichage des talents #}
 		{{ SkillBar.SkillBar(talent, true) }}
 	{% endfor %}
 
 	<h1 class="mt-5" id="Projet">Mes Projets</h1>
-	{% for label, messages in app.flashes %}
-		{% for msg in messages %}
-			{{ alert.alert(msg, label) }}
-		{% endfor %}
-	{% endfor %}
-
-	<div class="text-end my-3">
+	<div class="text-end my-3"> {# Tri des projets #}
 		<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 			Trier par
 		</button>
@@ -104,11 +95,12 @@
 		</ul>
 	</div>
 
-	{% for projet in projets %}
+	{% for projet in projets %} {# Affichage des projets #}
 		{{ ProjectBar.ProjectBar(projet, true) }}
-		{# {% for tag in projet.tags %}
-											{{tag.title}}
-										{% endfor %} #}
 	{% endfor %}
+
+	{% block javascripts %}
+		{{ parent() }}
+	{% endblock %}
 
 {% endblock %}

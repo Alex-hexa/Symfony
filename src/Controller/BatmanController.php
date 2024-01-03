@@ -1,4 +1,4 @@
-<?php
+<?php /* Controller pour l'easteregg Batman=Chris */
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

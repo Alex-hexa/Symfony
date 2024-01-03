@@ -2,15 +2,6 @@
 
 namespace App\Controller;
 
-/*
-use App\Entity\Tag;
-use App\Repository\ProjectRepository;
-use App\Repository\TagRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
-*/
-
 use App\Entity\Project;
 use App\Form\ProjectType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,20 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ProjectController extends AbstractController
-{
-    /*  
-    private $em;
-    private $projectRepository;
-    public function __construct(EntityManagerInterface $em, ProjectRepository $projectRepository, TagRepository $tagRepository)
-    {
-        $this->em = $em;
-        $this->projectRepository = $projectRepository;
-        $this->tagRepository = $tagRepository;
-    }
-    */
-    
-    #[Route("/read/project/{id}", name: "read_project")]
+class ProjectController extends AbstractController /* Controller des "projets" - CRUD */
+{ 
+    #[Route("/read/project/{id}", name: "read_project")] /* Consulter */
     public function read(Project $project): Response
     {
         if (!$project) {
@@ -42,7 +22,7 @@ class ProjectController extends AbstractController
     }
 
     
-    #[Route("/createProject", name: "create_project")]
+    #[Route("/createProject", name: "create_project")] /* Créer */
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -63,7 +43,7 @@ class ProjectController extends AbstractController
         ]);
     }
 
-    #[Route("/delete/project/{id}", name: "delete_project")]
+    #[Route("/delete/project/{id}", name: "delete_project")] /* Supprimer */
     public function delete(Project $project, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -74,7 +54,7 @@ class ProjectController extends AbstractController
         return $this->redirectToRoute("home");
     }
 
-    #[Route("/update/project/{id}", name: "update_project")]
+    #[Route("/update/project/{id}", name: "update_project")] /* Modifier */
     public function update(Project $project, Request $request, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');

@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class UserType extends AbstractType
+class UserType extends AbstractType /* Formulaire de la page de création d'utilisateur */
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

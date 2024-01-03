@@ -17,9 +17,9 @@ class Tag
     private ?int $id = null;
 
     #[ORM\Column(length: 70)]
-    private ?string $title = null; // "HTML", "CSS", "Symfony", "Gestion de projet"
+    private ?string $title = null;
 
-    #[ORM\ManyToMany(inversedBy: "tags", targetEntity: Project::class)]
+    #[ORM\ManyToMany(inversedBy: "tags", targetEntity: Project::class)] /* ManyToMany */
     private $projects;
 
     public function __construct()

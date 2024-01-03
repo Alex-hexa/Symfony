@@ -1,4 +1,4 @@
-<?php
+<?php /* Event pour modifier la page 404 */
 
 namespace App\EventListener;
 

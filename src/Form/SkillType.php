@@ -7,12 +7,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-//use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SkillType extends AbstractType
+class SkillType extends AbstractType /* Formulaire de la page de création de talent */
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -23,14 +22,6 @@ class SkillType extends AbstractType
                     "placeholder" => "Titre du talent",
                 ]
             ])
-           /*  ->add('rate', RangeType::class, [
-                'label' => 'Taux',
-                'attr' => [
-                    'min' => 0,
-                    'max' => 100,
-                    "placeholder" => "Taux de la barre de talent",
-                ],
-            ]) */
             ->add('rate', IntegerType::class, [
                 'label' => 'Taux',
                 'attr' => [

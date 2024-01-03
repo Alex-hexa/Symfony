@@ -1,4 +1,4 @@
-<?php
+<?php /* Création d'un filtre Twig */
 
 namespace App\Twig;
 

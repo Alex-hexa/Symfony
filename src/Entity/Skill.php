@@ -15,8 +15,8 @@ class Skill
     private ?int $id = null;
 
     #[ORM\Column(length: 70)]
-    private ?string $title = null; // "HTML", "CSS", "Symfony", "Gestion de projet"
-
+    private ?string $title = null;
+    
     #[Assert\NotBlank(message: "Le taux ne peut pas être vide.")]
     #[ORM\Column]
     private int $rate;

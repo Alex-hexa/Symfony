@@ -1,6 +1,6 @@
-<?php
+<?php 
 // src/Entity/Product.php
-namespace App\Entity;
+namespace App\Entity; /* Entité de candidater */
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

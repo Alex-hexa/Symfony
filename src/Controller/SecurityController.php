@@ -1,4 +1,4 @@
-<?php
+<?php /* Controller de la gestion du colpte "admin" */
 
 namespace App\Controller;
 

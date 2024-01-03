@@ -1,25 +1,19 @@
-{% extends "base.html.twig" %}
+{% extends "base.html.twig" %} {# modification de la page 404 #}
 
 {% block title %}
 	{{parent()}}
 	Page non trouvée
 {% endblock %}
 
-{% block stylesheets %}
-	{{parent()}}
-	<link rel="stylesheet" href="{{ asset('styles/main.css') }}">
-{% endblock %}
-
 {% block body %}
-
 	<section>
-		<div class="container">
-			<div class="text">
-				<h1>Page non trouvée</h1>
-				<p>Nous ne parvenons pas à trouver la page que vous recherchez. Veuillez vérifier l'URL pour vous assurer qu'il n'y a pas de fautes de frappe.</p>
-				<a href="/" class="home-link">Retour à l'accueil</a>
-			</div>
-			<img class="image" src="{{asset('images/404.png')}}" alt="404">
+			<h1 class="mt-5 pt-5 text-center">Erreur 404</h1>
+		<div class="pt-3 text-center">
+			<p>Oups ! La page que vous cherchez n'existe pas encore !</p>
+			<a href="/rickroll">Retour à l'accueil</a>
 		</div>
-	</div>
-</section>{% endblock %}
+		<div class="d-flex justify-content-center">
+			<img class="" src="{{asset('images/error-404.png')}}" alt="404">
+		</div>
+	</section>
+{% endblock %}

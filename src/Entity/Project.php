@@ -30,7 +30,7 @@ class Project
     #[ORM\Column(type: "string", length: 7, nullable: true)]
     private string $colorBackCard = "#FFFFFF";
 
-    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: "projects")]
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: "projects")] /* ManyToMany */
     private $tags;
 
     public function __construct()

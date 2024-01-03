@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CandidaterController extends AbstractController
+class CandidaterController extends AbstractController /* Controller de la page "candidater" qui permet de déposer un document */
 {
     #[Route('/candidater', name: 'candidater')]
     public function new(Request $request, FileUploader $fileUploader, ManagerRegistry $doctrine): Response
