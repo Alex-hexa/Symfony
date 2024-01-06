@@ -22,27 +22,29 @@
 		{% endfor %}
 	{% endfor %}
 
-	<p class="my-5 py-5 text-justify text-center">{# Texte de présentation #}
+	<p
+		class="my-5 py-5 text-justify text-center">
+		{# Texte de présentation #}
 		Il était une fois, dans une galaxie lointaine, très lointaine...<br>
 		Non, je rigole.
 		<br>
 		Moi, c'est Alexandre, j'ai 20 ans et je suis en deuxième année à l'école Hexagone. 
-										Pour résumé ma vie, je jongle entre les cours, l'envoie de mail à Chris et les micro-siestes stratégiques. 
-										Ma passion ? Le web, bien sûr !
+												Pour résumé ma vie, je jongle entre les cours, l'envoie de mail à Chris et les micro-siestes stratégiques. 
+												Ma passion ? Le web, bien sûr !
 		<br>
 		Si je pouvais obtenir un diplôme en 'scrolling intensif' et en 'maîtrise de l'art du meme', 
-										je serais déjà doctorant ! Pendant que d'autres collectionnent des timbres, moi je collectionne 
-										des onglets de navigateur. Et oui, je suis ce genre de personne qui pense que Ctrl+C et Ctrl+V méritent des éloges. 
-										Je suis aussi secrétaire du BDE d'Hexagone. C'est un peu comme être président, mais en moins bien, 
-										avec moins de responsabilités et plus de mails à envoyer. C'est moi qui vous harcele sur Wimi. 
-										J'espère que vous appréciez !
+												je serais déjà doctorant ! Pendant que d'autres collectionnent des timbres, moi je collectionne 
+												des onglets de navigateur. Et oui, je suis ce genre de personne qui pense que Ctrl+C et Ctrl+V méritent des éloges. 
+												Je suis aussi secrétaire du BDE d'Hexagone. C'est un peu comme être président, mais en moins bien, 
+												avec moins de responsabilités et plus de mails à envoyer. C'est moi qui vous harcele sur Wimi. 
+												J'espère que vous appréciez !
 		<br>
 		En bref, je suis un étudiant qui aime le web, les memes et les easters eggs.
-										Au total, il y en a 6 sur ce site. Saurez-vous les trouver ?
+												Au total, il y en a 6 sur ce site. Saurez-vous les trouver ?
 		<br>
 		Dans ce portfolio, vous trouverez mes talents et mes projets. Vous pouvez les trier par ordre alphabétique ou par date,
-										et vous pouvez aussi laisser votre candidature pour rejoindre mon équipe de developpement 
-										(oui, je recrute tout le monde dans ma start-up, même toi Maxime <3).
+												et vous pouvez aussi laisser votre candidature pour rejoindre mon équipe de developpement 
+												(oui, je recrute tout le monde dans ma start-up, même toi Maxime <3).
 	</p>
 	<div class="d-flex justify-content-center my-3 pb-5">
 		<img class="w-25" src="{{ asset('vinyles.png') }}" alt="Vinyles">
@@ -50,7 +52,9 @@
 
 	<h1 class="mt-2" id="Talent">Mes talents</h1>
 
-	<div class="text-end my-3"> {# Tri des talents #}
+	<div
+		class="text-end my-3">
+		{# Tri des talents #}
 		<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 			Trier par
 		</button>
@@ -70,12 +74,15 @@
 		</ul>
 	</div>
 
-	{% for talent in talents %} {# Affichage des talents #}
+	{% for talent in talents %}
+		{# Affichage des talents #}
 		{{ SkillBar.SkillBar(talent, true) }}
 	{% endfor %}
 
 	<h1 class="mt-5" id="Projet">Mes Projets</h1>
-	<div class="text-end my-3"> {# Tri des projets #}
+	<div
+		class="text-end my-3">
+		{# Tri des projets #}
 		<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 			Trier par
 		</button>
@@ -95,10 +102,15 @@
 		</ul>
 	</div>
 
-	{% for projet in projets %} {# Affichage des projets #}
+	{% for projet in projets %}
+		{# Affichage des projets #}
 		{{ ProjectBar.ProjectBar(projet, true) }}
 	{% endfor %}
-
+	<div class="my-5 text-center">
+		{# Bouton pour rendre le site invisible #}
+		<button class="btn btn-primary" id="invisibleButton" onclick="toggleInvisibleMode()">Activer le Mode Invisible</button>
+	</div>
+	<div class="my-5"></div>
 	{% block javascripts %}
 		{{ parent() }}
 	{% endblock %}
