@@ -39,7 +39,7 @@ class CandidaterType extends AbstractType /* Formulaire de la page Candidater */
                             'application/pdf',
                             'application/x-pdf',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                        'mimeTypesMessage' => 'Mettez un fichier PDF valide',
                     ])
                 ],
             ])
