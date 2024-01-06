@@ -29,7 +29,7 @@ class CandidaterType extends AbstractType /* Formulaire de la page Candidater */
                 ]
             ])
             ->add('brochure', FileType::class, [
-                'label' => 'Brochure (PDF file)',
+                'label' => 'Brochure (fichier PDF)',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
